@@ -47,6 +47,6 @@ describe('action', () => {
     expect(runMock).toHaveReturned()
 
     expect(setFailedMock).toHaveBeenCalledTimes(0)
-    // expect(setOutputMock).toHaveBeenCalledTimes(1)
+    expect(setOutputMock).toHaveBeenCalledTimes(1)
   })
 })

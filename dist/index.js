@@ -35546,6 +35546,10 @@ async function run() {
       .signAndSend(account, result => {
         if (result.status.isFinalized) {
           core.setOutput('hash', result.txHash.toHuman())
+          wsProvider.disconnect()
+        } else if (result.isError) {
+          core.setFailed('error')
+          wsProvider.disconnect()
         }
       })
   } catch (error) {
