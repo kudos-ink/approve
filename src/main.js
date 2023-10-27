@@ -15,7 +15,7 @@ async function run() {
     })
     const contractAbi = core.getInput('contract-abi', { required: true })
     const contributionId = +core.getInput('contribution-id', { required: true })
-    const contributorIdentity = +core.getInput('contributor-identity', {
+    const contributorIdentity = core.getInput('contributor-identity', {
       required: true
     })
 

@@ -37,7 +37,7 @@ describe('action', () => {
         case 'contribution-id':
           return '1'
         case 'contributor-identity':
-          return '0'
+          return '0xf95dbf696b6a17df2af2d44264fa9bd47edadf2976091de67ba1dd5dd04e2033'
         default:
           return ''
       }
@@ -47,5 +47,6 @@ describe('action', () => {
     expect(runMock).toHaveReturned()
 
     expect(setFailedMock).toHaveBeenCalledTimes(0)
+    // expect(setOutputMock).toHaveBeenCalledTimes(1)
   })
 })

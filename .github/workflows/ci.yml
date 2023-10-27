@@ -53,7 +53,12 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 1000
+          ws-provider-url: ${{ vars.WS_PROVIDER_URL }}
+          mnemonic-phrase: ${{ secrets.MNEMONIC_PHRASE }}
+          contract-address: ${{ vars.CONTRACT_ADDRESS }}
+          contract-abi: ${{ vars.ABI }}
+          contribution-id: 1
+          contributor-identity: "0xf95dbf696b6a17df2af2d44264fa9bd47edadf2976091de67ba1dd5dd04e2033"
 
       - name: Print Output
         id: output
