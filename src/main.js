@@ -50,6 +50,7 @@ async function run() {
       .signAndSend(account, result => {
         if (result.status.isFinalized) {
           core.setOutput('hash', result.txHash.toHuman())
+          core.setOutput('block', result.status.asFinalized)
           wsProvider.disconnect()
         } else if (result.isError) {
           core.setFailed('error')
