@@ -104,3 +104,5 @@ __tests__/runner/*
 src/test.js
 src/test
 src/abi.json
+
+dist

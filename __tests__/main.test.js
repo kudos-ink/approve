@@ -31,13 +31,13 @@ describe('action', () => {
         case 'mnemonic-phrase':
           return 'entire material egg meadow latin bargain dutch coral blood melt acoustic thought'
         case 'contract-address':
-          return '5D5x653PxChSTBczHzjveBvda85oPG4CwZYYkq2qAujeEP49'
+          return '5DP3Ss7z5SWK37FD71NhRfrrwYKSfTbMrUBDRYUshYiLQsw8'
         case 'contract-abi':
           return JSON.stringify(abi)
         case 'contribution-id':
           return '1'
-        case 'contributor-identity':
-          return '0xf95dbf696b6a17df2af2d44264fa9bd47edadf2976091de67ba1dd5dd04e2033'
+        case 'contributor':
+          return '5GspWdbeG69eH6nNnZBhjY3ay15SVfxwt5zapxbVkDQP27Vy'
         default:
           return ''
       }

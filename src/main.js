@@ -53,7 +53,7 @@ async function run() {
     })
     const contractAbi = core.getInput('contract-abi', { required: true })
     const contributionId = +core.getInput('contribution-id', { required: true })
-    const contributorIdentity = core.getInput('contributor-identity', {
+    const contributor = core.getInput('contributor', {
       required: true
     })
 
@@ -79,13 +79,12 @@ async function run() {
     const gasLimit = getMaxGasLimit(api)
     const contract = new ContractPromise(api, abi, contractAddress)
 
+    console.log({ contractAddress, contributionId, contributor })
+
     await contract.tx
-      .approve(
-        { storageDepositLimit, gasLimit },
-        contributionId,
-        contributorIdentity
-      )
+      .approve({ storageDepositLimit, gasLimit }, contributionId, contributor)
       .signAndSend(account, result => {
+        console.log({ status: result.status })
         if (result.status.isFinalized) {
           core.setOutput('hash', result.txHash.toHuman())
           core.setOutput('block', result.status.asFinalized)

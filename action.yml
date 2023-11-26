@@ -19,8 +19,8 @@ inputs:
   contribution-id:
     description: 'id of the contribution'
     required: true
-  contributor-identity:
-    description: 'identity of the contributor'
+  contributor:
+    description: 'contributor public address'
     required: true
 
 # Define your outputs here.

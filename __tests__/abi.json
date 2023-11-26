@@ -1,12 +1,12 @@
 {
   "source": {
-    "hash": "0x869f33b74a863d7c227723a3b55c6ce6afe99e35cd3791c2efc88f15ababe59e",
+    "hash": "0xd8da77868d5a6a229d55cd2402f8b5cfc723c70367962d7b0577a3678d2aed5b",
     "language": "ink! 4.3.0",
-    "compiler": "rustc 1.73.0",
+    "compiler": "rustc 1.69.0",
     "build_info": {
-      "build_mode": "Debug",
+      "build_mode": "Release",
       "cargo_contract_version": "3.2.0",
-      "rust_toolchain": "stable-x86_64-unknown-linux-gnu",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
       "wasm_opt_settings": {
         "keep_debug_symbols": false,
         "optimization_passes": "Z"
@@ -14,27 +14,16 @@
     }
   },
   "contract": {
-    "name": "single_token_contract",
-    "version": "0.1.0",
+    "name": "demo",
+    "version": "0.0.1",
     "authors": [
-      "Igor Papandinas",
-      "Leandro Palazzolo"
+      "Kudos Ink! <hello@kudos.ink>"
     ]
   },
   "spec": {
     "constructors": [
       {
-        "args": [
-          {
-            "label": "workflow",
-            "type": {
-              "displayName": [
-                "HashValue"
-              ],
-              "type": 1
-            }
-          }
-        ],
+        "args": [],
         "default": false,
         "docs": [
           "Constructor that initializes an asset reward for a given workflow"
@@ -46,7 +35,7 @@
             "ink_primitives",
             "ConstructorResult"
           ],
-          "type": 6
+          "type": 4
         },
         "selector": "0x9bae9d5e"
       }
@@ -63,32 +52,32 @@
         "displayName": [
           "Balance"
         ],
-        "type": 3
+        "type": 19
       },
       "blockNumber": {
         "displayName": [
           "BlockNumber"
         ],
-        "type": 25
+        "type": 21
       },
       "chainExtension": {
         "displayName": [
           "ChainExtension"
         ],
-        "type": 26
+        "type": 22
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 24
+        "type": 20
       },
       "maxEventTopics": 4,
       "timestamp": {
         "displayName": [
           "Timestamp"
         ],
-        "type": 4
+        "type": 3
       }
     },
     "events": [
@@ -97,12 +86,12 @@
           {
             "docs": [],
             "indexed": false,
-            "label": "identity",
+            "label": "id",
             "type": {
               "displayName": [
-                "HashValue"
+                "String"
               ],
-              "type": 1
+              "type": 18
             }
           },
           {
@@ -118,7 +107,7 @@
           }
         ],
         "docs": [
-          "Emitted when an `identity` is registered by an aspiring contributor."
+          "Emitted when an `id` is registered by an aspiring contributor."
         ],
         "label": "IdentityRegistered"
       },
@@ -130,9 +119,9 @@
             "label": "id",
             "type": {
               "displayName": [
-                "u64"
+                "ContributorId"
               ],
-              "type": 4
+              "type": 3
             }
           },
           {
@@ -151,47 +140,6 @@
           "Emitted when a `contribution` is approved."
         ],
         "label": "ContributionApproval"
-      },
-      {
-        "args": [
-          {
-            "docs": [],
-            "indexed": false,
-            "label": "contribution_id",
-            "type": {
-              "displayName": [
-                "u64"
-              ],
-              "type": 4
-            }
-          },
-          {
-            "docs": [],
-            "indexed": false,
-            "label": "contributor",
-            "type": {
-              "displayName": [
-                "AccountId"
-              ],
-              "type": 0
-            }
-          },
-          {
-            "docs": [],
-            "indexed": false,
-            "label": "reward",
-            "type": {
-              "displayName": [
-                "Balance"
-              ],
-              "type": 3
-            }
-          }
-        ],
-        "docs": [
-          "Emitted when the reward associated with the `contribution` is claimed."
-        ],
-        "label": "RewardClaimed"
       }
     ],
     "lang_error": {
@@ -199,73 +147,27 @@
         "ink",
         "LangError"
       ],
-      "type": 8
+      "type": 6
     },
     "messages": [
-      {
-        "args": [],
-        "default": false,
-        "docs": [
-          " Set the reward"
-        ],
-        "label": "set_reward",
-        "mutates": true,
-        "payable": true,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0x78b4b9c1"
-      },
-      {
-        "args": [
-          {
-            "label": "identity",
-            "type": {
-              "displayName": [
-                "HashValue"
-              ],
-              "type": 1
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Register the caller as an aspiring contributor."
-        ],
-        "label": "register_identity",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0x87ebe7fb"
-      },
       {
         "args": [
           {
             "label": "contribution_id",
             "type": {
               "displayName": [
-                "u64"
+                "ContributorId"
               ],
-              "type": 4
+              "type": 3
             }
           },
           {
-            "label": "contributor_identity",
+            "label": "contributor",
             "type": {
               "displayName": [
-                "HashValue"
+                "AccountId"
               ],
-              "type": 1
+              "type": 0
             }
           }
         ],
@@ -281,7 +183,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 9
+          "type": 7
         },
         "selector": "0x681266a0"
       },
@@ -291,17 +193,17 @@
             "label": "contribution_id",
             "type": {
               "displayName": [
-                "u64"
+                "ContributorId"
               ],
-              "type": 4
+              "type": 3
             }
           }
         ],
         "default": false,
         "docs": [
-          " Check the ability to claim for a given `contribution_id`."
+          " Check if the caller is the contributor of a given `contribution_id`."
         ],
-        "label": "can_claim",
+        "label": "check",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -309,309 +211,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 13
+          "type": 11
         },
-        "selector": "0x268e24c9"
-      },
-      {
-        "args": [
-          {
-            "label": "contribution_id",
-            "type": {
-              "displayName": [
-                "u64"
-              ],
-              "type": 4
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Claim reward for a given `contribution_id`."
-        ],
-        "label": "claim",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0xb388803f"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [
-          " Simply returns the workflow hash."
-        ],
-        "label": "get_workflow",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 15
-        },
-        "selector": "0xcf257c7e"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [
-          " Simply returns the reward amount."
-        ],
-        "label": "get_reward",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 16
-        },
-        "selector": "0xd759b94d"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [
-          " Simply returns the aprroved `contribution` if some."
-        ],
-        "label": "get_contribution",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 17
-        },
-        "selector": "0xe79557bc"
-      },
-      {
-        "args": [
-          {
-            "label": "identity",
-            "type": {
-              "displayName": [
-                "HashValue"
-              ],
-              "type": 1
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Simply returns the `AccountId` of a given identity."
-        ],
-        "label": "get_account",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 20
-        },
-        "selector": "0xd0f48683"
-      },
-      {
-        "args": [
-          {
-            "label": "identity",
-            "type": {
-              "displayName": [
-                "workflow_external",
-                "RegisterIdentityInput1"
-              ],
-              "type": 1
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Register the caller as an aspiring contributor.",
-          "",
-          " Constraint(s):",
-          " 1. The `identity` id should not already be registered.",
-          "",
-          " A `IdentityRegistered` event is emitted."
-        ],
-        "label": "Workflow::register_identity",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0xeddaa3c6"
-      },
-      {
-        "args": [
-          {
-            "label": "contribution_id",
-            "type": {
-              "displayName": [
-                "workflow_external",
-                "ClaimInput1"
-              ],
-              "type": 4
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Claim reward for a given `contribution_id`.",
-          "",
-          " Constraint(s): Ensure `can_claim`.",
-          "",
-          " A `RewardClaimed` event is emitted."
-        ],
-        "label": "Workflow::claim",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0x1f5c9aa8"
-      },
-      {
-        "args": [
-          {
-            "label": "contribution_id",
-            "type": {
-              "displayName": [
-                "workflow_external",
-                "CanClaimInput1"
-              ],
-              "type": 4
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Check the ability to claim for a given `contribution_id`.",
-          "",
-          " Constraint(s):",
-          " 1. A `contribution` must be approved.",
-          " 2. The `contribution_id` must be the same as the one in the approved `contribution`.",
-          " 3. The caller has to be the contributor of the approved `contribution`.",
-          " 4. The claim must be available (marked as false in the claims mapping)."
-        ],
-        "label": "Workflow::can_claim",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 13
-        },
-        "selector": "0x081ae8d4"
-      },
-      {
-        "args": [
-          {
-            "label": "contribution_id",
-            "type": {
-              "displayName": [
-                "workflow_external",
-                "ApproveInput1"
-              ],
-              "type": 4
-            }
-          },
-          {
-            "label": "contributor_identity",
-            "type": {
-              "displayName": [
-                "workflow_external",
-                "ApproveInput2"
-              ],
-              "type": 1
-            }
-          }
-        ],
-        "default": false,
-        "docs": [
-          " Approve contribution. This is triggered by a workflow run.",
-          "",
-          " Constraint(s):",
-          " 1. The `contribution_id` should not already be approved.",
-          " 2. The `contributor_identity` must be registered.",
-          "",
-          " An `ContributionApproval` event is emitted."
-        ],
-        "label": "Workflow::approve",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 9
-        },
-        "selector": "0x471895dc"
-      },
-      {
-        "args": [
-          {
-            "label": "new_owner",
-            "type": {
-              "displayName": [
-                "ownable_external",
-                "TransferOwnershipInput1"
-              ],
-              "type": 21
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::transfer_ownership",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 22
-        },
-        "selector": "0x11f43efd"
-      },
-      {
-        "args": [],
-        "default": false,
-        "docs": [],
-        "label": "Ownable::renounce_ownership",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 22
-        },
-        "selector": "0x5e228753"
+        "selector": "0xaf0a4058"
       },
       {
         "args": [],
@@ -625,9 +227,52 @@
             "ink",
             "MessageResult"
           ],
-          "type": 20
+          "type": 14
         },
         "selector": "0x4fa43c8c"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::renounce_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x5e228753"
+      },
+      {
+        "args": [
+          {
+            "label": "new_owner",
+            "type": {
+              "displayName": [
+                "ownable_external",
+                "TransferOwnershipInput1"
+              ],
+              "type": 15
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::transfer_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x11f43efd"
       }
     ]
   },
@@ -682,101 +327,39 @@
             },
             {
               "layout": {
-                "array": {
+                "root": {
                   "layout": {
-                    "leaf": {
-                      "key": "0x00000000",
-                      "ty": 2
-                    }
-                  },
-                  "len": 32,
-                  "offset": "0x00000000"
-                }
-              },
-              "name": "workflow"
-            },
-            {
-              "layout": {
-                "leaf": {
-                  "key": "0x00000000",
-                  "ty": 3
-                }
-              },
-              "name": "reward"
-            },
-            {
-              "layout": {
-                "enum": {
-                  "dispatchKey": "0x00000000",
-                  "name": "Option",
-                  "variants": {
-                    "0": {
-                      "fields": [],
-                      "name": "None"
-                    },
-                    "1": {
+                    "struct": {
                       "fields": [
                         {
                           "layout": {
-                            "struct": {
-                              "fields": [
-                                {
-                                  "layout": {
-                                    "leaf": {
-                                      "key": "0x00000000",
-                                      "ty": 4
-                                    }
-                                  },
-                                  "name": "id"
-                                },
-                                {
-                                  "layout": {
-                                    "leaf": {
-                                      "key": "0x00000000",
-                                      "ty": 0
-                                    }
-                                  },
-                                  "name": "contributor"
-                                },
-                                {
-                                  "layout": {
-                                    "leaf": {
-                                      "key": "0x00000000",
-                                      "ty": 5
-                                    }
-                                  },
-                                  "name": "is_reward_claimed"
-                                }
-                              ],
-                              "name": "Contribution"
+                            "leaf": {
+                              "key": "0x3fa51969",
+                              "ty": 3
                             }
                           },
-                          "name": "0"
+                          "name": "id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3fa51969",
+                              "ty": 0
+                            }
+                          },
+                          "name": "contributor"
                         }
                       ],
-                      "name": "Some"
-                    }
-                  }
-                }
-              },
-              "name": "contribution"
-            },
-            {
-              "layout": {
-                "root": {
-                  "layout": {
-                    "leaf": {
-                      "key": "0x974c2af6",
-                      "ty": 0
+                      "name": "Contribution"
                     }
                   },
-                  "root_key": "0x974c2af6"
+                  "root_key": "0x3fa51969"
                 }
               },
-              "name": "identities"
+              "name": "contributions"
             }
           ],
-          "name": "SingleToken"
+          "name": "Demo"
         }
       },
       "root_key": "0x00000000"
@@ -826,7 +409,7 @@
       "id": 3,
       "type": {
         "def": {
-          "primitive": "u128"
+          "primitive": "u64"
         }
       }
     },
@@ -834,28 +417,12 @@
       "id": 4,
       "type": {
         "def": {
-          "primitive": "u64"
-        }
-      }
-    },
-    {
-      "id": 5,
-      "type": {
-        "def": {
-          "primitive": "bool"
-        }
-      }
-    },
-    {
-      "id": 6,
-      "type": {
-        "def": {
           "variant": {
             "variants": [
               {
                 "fields": [
                   {
-                    "type": 7
+                    "type": 5
                   }
                 ],
                 "index": 0,
@@ -864,7 +431,7 @@
               {
                 "fields": [
                   {
-                    "type": 8
+                    "type": 6
                   }
                 ],
                 "index": 1,
@@ -876,11 +443,11 @@
         "params": [
           {
             "name": "T",
-            "type": 7
+            "type": 5
           },
           {
             "name": "E",
-            "type": 8
+            "type": 6
           }
         ],
         "path": [
@@ -889,7 +456,7 @@
       }
     },
     {
-      "id": 7,
+      "id": 5,
       "type": {
         "def": {
           "tuple": []
@@ -897,7 +464,7 @@
       }
     },
     {
-      "id": 8,
+      "id": 6,
       "type": {
         "def": {
           "variant": {
@@ -916,6 +483,90 @@
       }
     },
     {
+      "id": 7,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 6
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          },
+          {
+            "name": "E",
+            "type": 6
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 5
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
       "id": 9,
       "type": {
         "def": {
@@ -924,91 +575,7 @@
               {
                 "fields": [
                   {
-                    "type": 10
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 10
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 10,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 7
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 11
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 7
-          },
-          {
-            "name": "E",
-            "type": 11
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 11,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 12,
+                    "type": 10,
                     "typeName": "OwnableError"
                   }
                 ],
@@ -1026,40 +593,19 @@
               {
                 "index": 3,
                 "name": "NoContributionApprovedYet"
-              },
-              {
-                "index": 4,
-                "name": "UnknownContributor"
-              },
-              {
-                "index": 5,
-                "name": "UnknownContribution"
-              },
-              {
-                "index": 6,
-                "name": "PaymentFailed"
-              },
-              {
-                "index": 7,
-                "name": "CallerIsNotContributor"
-              },
-              {
-                "index": 8,
-                "name": "AlreadyClaimed"
               }
             ]
           }
         },
         "path": [
-          "kudos_ink_contracts",
-          "traits",
-          "workflow",
-          "WorkflowError"
+          "demo",
+          "errors",
+          "DemoError"
         ]
       }
     },
     {
-      "id": 12,
+      "id": 10,
       "type": {
         "def": {
           "variant": {
@@ -1085,7 +631,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 11,
       "type": {
         "def": {
           "variant": {
@@ -1093,7 +639,7 @@
               {
                 "fields": [
                   {
-                    "type": 14
+                    "type": 12
                   }
                 ],
                 "index": 0,
@@ -1102,7 +648,7 @@
               {
                 "fields": [
                   {
-                    "type": 8
+                    "type": 6
                   }
                 ],
                 "index": 1,
@@ -1114,16 +660,66 @@
         "params": [
           {
             "name": "T",
-            "type": 14
+            "type": 12
           },
           {
             "name": "E",
-            "type": 8
+            "type": 6
           }
         ],
         "path": [
           "Result"
         ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 13
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 13
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
       }
     },
     {
@@ -1135,7 +731,7 @@
               {
                 "fields": [
                   {
-                    "type": 5
+                    "type": 15
                   }
                 ],
                 "index": 0,
@@ -1144,7 +740,7 @@
               {
                 "fields": [
                   {
-                    "type": 11
+                    "type": 6
                   }
                 ],
                 "index": 1,
@@ -1156,11 +752,11 @@
         "params": [
           {
             "name": "T",
-            "type": 5
+            "type": 15
           },
           {
             "name": "E",
-            "type": 11
+            "type": 6
           }
         ],
         "path": [
@@ -1170,238 +766,6 @@
     },
     {
       "id": 15,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 1
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 1
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 16,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 3
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 3
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 17,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 18
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 18
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 18,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "None"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 19
-                  }
-                ],
-                "index": 1,
-                "name": "Some"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 19
-          }
-        ],
-        "path": [
-          "Option"
-        ]
-      }
-    },
-    {
-      "id": 19,
-      "type": {
-        "def": {
-          "composite": {
-            "fields": [
-              {
-                "name": "id",
-                "type": 4,
-                "typeName": "u64"
-              },
-              {
-                "name": "contributor",
-                "type": 0,
-                "typeName": "AccountId"
-              },
-              {
-                "name": "is_reward_claimed",
-                "type": 5,
-                "typeName": "bool"
-              }
-            ]
-          }
-        },
-        "path": [
-          "single_token_contract",
-          "single_token",
-          "Contribution"
-        ]
-      }
-    },
-    {
-      "id": 20,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 21
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 8
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 21
-          },
-          {
-            "name": "E",
-            "type": 8
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 21,
       "type": {
         "def": {
           "variant": {
@@ -1434,7 +798,7 @@
       }
     },
     {
-      "id": 22,
+      "id": 16,
       "type": {
         "def": {
           "variant": {
@@ -1442,7 +806,7 @@
               {
                 "fields": [
                   {
-                    "type": 23
+                    "type": 17
                   }
                 ],
                 "index": 0,
@@ -1451,7 +815,7 @@
               {
                 "fields": [
                   {
-                    "type": 8
+                    "type": 6
                   }
                 ],
                 "index": 1,
@@ -1463,11 +827,11 @@
         "params": [
           {
             "name": "T",
-            "type": 23
+            "type": 17
           },
           {
             "name": "E",
-            "type": 8
+            "type": 6
           }
         ],
         "path": [
@@ -1476,7 +840,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 17,
       "type": {
         "def": {
           "variant": {
@@ -1484,7 +848,7 @@
               {
                 "fields": [
                   {
-                    "type": 7
+                    "type": 5
                   }
                 ],
                 "index": 0,
@@ -1493,7 +857,7 @@
               {
                 "fields": [
                   {
-                    "type": 12
+                    "type": 10
                   }
                 ],
                 "index": 1,
@@ -1505,11 +869,11 @@
         "params": [
           {
             "name": "T",
-            "type": 7
+            "type": 5
           },
           {
             "name": "E",
-            "type": 12
+            "type": 10
           }
         ],
         "path": [
@@ -1518,7 +882,23 @@
       }
     },
     {
-      "id": 24,
+      "id": 18,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 20,
       "type": {
         "def": {
           "composite": {
@@ -1538,7 +918,7 @@
       }
     },
     {
-      "id": 25,
+      "id": 21,
       "type": {
         "def": {
           "primitive": "u32"
@@ -1546,7 +926,7 @@
       }
     },
     {
-      "id": 26,
+      "id": 22,
       "type": {
         "def": {
           "variant": {}
